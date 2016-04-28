@@ -18,15 +18,22 @@ var blogSchema = new mongoose.Schema({
 });
 var Blog = mongoose.model("Blog", blogSchema);
 
-Blog.create({
-    title: "Test blog",
-    image: "https://pixabay.com/static/uploads/photo/2013/07/12/16/24/fried-egg-150835_960_720.png",
-    body: "Hello this is a blog post about eggs"
-});
-
 // RESTFUL ROUTES
 
+app.get("/", function(req, res) {
+    res.redirect("/blogs");
+});
 
+app.get("/blogs", function(req, res) {
+    Blog.find({}, function(err, blogs) {
+        if(err) {
+            console.log(err);
+        }
+        else{
+            res.render("index", {blogs: blogs});
+        }
+    });
+});
 
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("server is running!");
