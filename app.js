@@ -100,10 +100,10 @@ app.delete("/blogs/:id", function(req, res) {
             res.redirect("/blogs");
         }
         else{
+            //redirect somewhere
             res.redirect("/blogs");
         }
     });
-    //redirect somewhere
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
